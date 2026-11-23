@@ -1,0 +1,41 @@
+{
+  "id": "ablation1_no_store_meta",
+  "name": "CatBoost Ablation 1 (No Store Meta)",
+  "model_type": "catboost",
+  "is_ridge": false,
+  "alpha": null,
+  "iterations": 350,
+  "depth": 6,
+  "learning_rate": 0.12,
+  "feature_cols": [
+    "Promo",
+    "store_median",
+    "weekday_median",
+    "recent_mean",
+    "trend",
+    "last_year",
+    "promo_median",
+    "sales_28_days_before_cutoff",
+    "recent_std",
+    "recent_weekday_median",
+    "recent_mean_promo",
+    "recent_mean_no_promo",
+    "store_median_promo",
+    "store_median_no_promo",
+    "promo_uplift",
+    "expected_promo_sales",
+    "Day",
+    "WeekOfYear",
+    "IsMonthStart",
+    "IsMonthEnd",
+    "IsMidMonth",
+    "SchoolHoliday"
+  ],
+  "cat_cols": [
+    "Store",
+    "DayOfWeek",
+    "Month",
+    "StateHoliday"
+  ],
+  "hypothesis": "Абляция 1: исключение метаданных магазинов (`store.csv`) изолированно показывает вклад информации о типе магазина, ассортименте и конкурентах."
+}

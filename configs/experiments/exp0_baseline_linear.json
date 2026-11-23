@@ -1,0 +1,26 @@
+{
+  "id": "exp0_baseline_linear",
+  "name": "Baseline (Linear Regression)",
+  "model_type": "linear",
+  "is_ridge": false,
+  "alpha": null,
+  "iterations": null,
+  "feature_cols": [
+    "Promo",
+    "store_median",
+    "weekday_median",
+    "recent_mean",
+    "trend",
+    "last_year",
+    "promo_median",
+    "sales_28_days_before_cutoff",
+    "recent_std",
+    "recent_weekday_median"
+  ],
+  "cat_cols": [
+    "Store",
+    "DayOfWeek",
+    "Month"
+  ],
+  "hypothesis": "Оригинальный baseline из ДЗ 1: линейная модель на log1p(Sales) с OHE магазинов и 9 историческими признаками."
+}

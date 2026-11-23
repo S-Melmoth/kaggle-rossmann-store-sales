@@ -1,0 +1,27 @@
+{
+  "id": "exp2_noisy_7d_lag",
+  "name": "Ridge + 7d Sales Lag",
+  "model_type": "ridge",
+  "is_ridge": true,
+  "alpha": 10.0,
+  "iterations": null,
+  "feature_cols": [
+    "Promo",
+    "store_median",
+    "weekday_median",
+    "recent_mean",
+    "trend",
+    "last_year",
+    "promo_median",
+    "sales_28_days_before_cutoff",
+    "recent_std",
+    "recent_weekday_median",
+    "recent_7d_mean"
+  ],
+  "cat_cols": [
+    "Store",
+    "DayOfWeek",
+    "Month"
+  ],
+  "hypothesis": "Средняя выручка магазина за 7 дней до окна прогноза поможет учесть свежий темп продаж и снизит ошибку."
+}
