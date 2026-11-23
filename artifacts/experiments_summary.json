@@ -1,0 +1,1170 @@
+[
+  {
+    "id": "exp0_baseline_linear",
+    "name": "Baseline (Linear Regression)",
+    "hypothesis": "Оригинальный baseline из ДЗ 1: линейная модель на log1p(Sales) с OHE магазинов и 9 историческими признаками.",
+    "model_type": "linear",
+    "feature_count": 10,
+    "fit_time_seconds": 2.89,
+    "main_window": {
+      "start": "2015-06-20",
+      "end": "2015-07-31",
+      "rmspe": 0.15642577424711804,
+      "mae": 746.864927027663,
+      "bias": 0.010937915465682116
+    },
+    "multi_window": {
+      "rmspe_scores": [
+        0.2232910927590214,
+        0.18504000430054185,
+        0.15642577424711804
+      ],
+      "mean_rmspe": 0.18825229043556044,
+      "std_rmspe": 0.03354820101860152,
+      "mae_scores": [
+        822.0284931437293,
+        1039.5328971306,
+        746.864927027663
+      ],
+      "mean_mae": 869.4754391006642,
+      "std_mae": 151.99356792813185
+    },
+    "bootstrap_vs_baseline": {
+      "delta_rmspe_point": 0.0,
+      "delta_rmspe_95_ci": [
+        0.0,
+        0.0
+      ],
+      "relative_improvement_point": 0.0,
+      "relative_improvement_95_ci": [
+        0.0,
+        0.0
+      ],
+      "excludes_zero": false
+    },
+    "bootstrap_vs_baseline_3w": {
+      "delta_rmspe_point": 0.0,
+      "delta_rmspe_95_ci": [
+        0.0,
+        0.0
+      ],
+      "relative_improvement_point": 0.0,
+      "relative_improvement_95_ci": [
+        0.0,
+        0.0
+      ],
+      "excludes_zero": false
+    },
+    "slices": {
+      "overall": {
+        "rows": 40282,
+        "rmspe": 0.15642577424711804,
+        "mae": 746.864927027663,
+        "bias": 0.010937915465682123
+      },
+      "low_sales": {
+        "threshold": 3846.1000000000004,
+        "rows": 4029,
+        "rmspe": 0.2838825997204145,
+        "mae": 531.5453159541004,
+        "bias": 0.15765090135661186
+      },
+      "promo": {
+        "rows": 16701,
+        "rmspe": 0.13825102255999747,
+        "mae": 887.2483391756629,
+        "bias": -0.0005275393977100429
+      },
+      "no_promo": {
+        "rows": 23581,
+        "rmspe": 0.16811343274558238,
+        "mae": 647.4398235000882,
+        "bias": 0.019058205600685406
+      }
+    },
+    "feature_importance": null,
+    "bootstrap_vs_full_3w": {
+      "delta_rmspe_point": 0.036119318593612865,
+      "delta_rmspe_95_ci": [
+        0.027006547258655127,
+        0.04913135941558949
+      ],
+      "relative_improvement_point": -0.23431753850529285,
+      "relative_improvement_95_ci": [
+        -0.2880954684118379,
+        -0.18529504509727066
+      ],
+      "excludes_zero": true
+    },
+    "bootstrap_vs_full_w3": {
+      "delta_rmspe_point": 0.03318832206461916,
+      "delta_rmspe_95_ci": [
+        0.029110162526826897,
+        0.03749968569898192
+      ],
+      "relative_improvement_point": -0.26930386401912554,
+      "relative_improvement_95_ci": [
+        -0.3092830246412697,
+        -0.22877966789215481
+      ],
+      "excludes_zero": true
+    }
+  },
+  {
+    "id": "exp1_ridge",
+    "name": "Linear + Ridge L2 (alpha=10.0)",
+    "hypothesis": "L2-регуляризация (Ridge) защитит линейную модель от переобучения, ограничит рост весов и улучшит обобщающую способность.",
+    "model_type": "ridge",
+    "feature_count": 10,
+    "fit_time_seconds": 1.31,
+    "main_window": {
+      "start": "2015-06-20",
+      "end": "2015-07-31",
+      "rmspe": 0.15575421120539892,
+      "mae": 740.2450468076481,
+      "bias": 0.013861043703583577
+    },
+    "multi_window": {
+      "rmspe_scores": [
+        0.22786519048354942,
+        0.18413015804372102,
+        0.15575421120539892
+      ],
+      "mean_rmspe": 0.18924985324422314,
+      "std_rmspe": 0.036327080701908813,
+      "mae_scores": [
+        853.1813274369208,
+        1019.025437893722,
+        740.2450468076481
+      ],
+      "mean_mae": 870.8172707127636,
+      "std_mae": 140.2244503820487
+    },
+    "bootstrap_vs_baseline": {
+      "delta_rmspe_point": -0.0006715630417191143,
+      "delta_rmspe_95_ci": [
+        -0.0010555204445728314,
+        -0.0002537404301671751
+      ],
+      "relative_improvement_point": 0.004293173838847002,
+      "relative_improvement_95_ci": [
+        0.0016079406374765273,
+        0.006821986320112459
+      ],
+      "excludes_zero": true
+    },
+    "bootstrap_vs_baseline_3w": {
+      "delta_rmspe_point": 0.0013734113432803674,
+      "delta_rmspe_95_ci": [
+        0.0007739554675703787,
+        0.001942992048249173
+      ],
+      "relative_improvement_point": -0.007218367316057163,
+      "relative_improvement_95_ci": [
+        -0.010982683226698837,
+        -0.0035948065945746502
+      ],
+      "excludes_zero": true
+    },
+    "slices": {
+      "overall": {
+        "rows": 40282,
+        "rmspe": 0.15575421120539892,
+        "mae": 740.2450468076481,
+        "bias": 0.013861043703583577
+      },
+      "low_sales": {
+        "threshold": 3846.1000000000004,
+        "rows": 4029,
+        "rmspe": 0.2855405238079614,
+        "mae": 533.985517956232,
+        "bias": 0.16163400307384793
+      },
+      "promo": {
+        "rows": 16701,
+        "rmspe": 0.13780398771381924,
+        "mae": 882.3978021883668,
+        "bias": 0.0022095575562489336
+      },
+      "no_promo": {
+        "rows": 23581,
+        "rmspe": 0.16730629840872552,
+        "mae": 639.5668241871747,
+        "bias": 0.022113088576431884
+      }
+    },
+    "feature_importance": null,
+    "bootstrap_vs_full_3w": {
+      "delta_rmspe_point": 0.03749272993689323,
+      "delta_rmspe_95_ci": [
+        0.02869343359773892,
+        0.05024426008970241
+      ],
+      "relative_improvement_point": -0.2432272958828756,
+      "relative_improvement_95_ci": [
+        -0.294416874130492,
+        -0.19544539983678488
+      ],
+      "excludes_zero": true
+    },
+    "bootstrap_vs_full_w3": {
+      "delta_rmspe_point": 0.03251675902290005,
+      "delta_rmspe_95_ci": [
+        0.028477595276268166,
+        0.03673021726492724
+      ],
+      "relative_improvement_point": -0.2638545218765712,
+      "relative_improvement_95_ci": [
+        -0.3060477869905126,
+        -0.2240165312472745
+      ],
+      "excludes_zero": true
+    }
+  },
+  {
+    "id": "exp2_noisy_7d_lag",
+    "name": "Ridge + 7d Sales Lag",
+    "hypothesis": "Средняя выручка магазина за 7 дней до окна прогноза поможет учесть свежий темп продаж и снизит ошибку.",
+    "model_type": "ridge",
+    "feature_count": 11,
+    "fit_time_seconds": 1.58,
+    "main_window": {
+      "start": "2015-06-20",
+      "end": "2015-07-31",
+      "rmspe": 0.15610586569593804,
+      "mae": 741.4088886705199,
+      "bias": 0.013944758399762832
+    },
+    "multi_window": {
+      "rmspe_scores": [
+        0.24086011427710652,
+        0.18389110600016334,
+        0.15610586569593804
+      ],
+      "mean_rmspe": 0.19361902865773595,
+      "std_rmspe": 0.04320642339471541,
+      "mae_scores": [
+        920.3229759850892,
+        1015.433011528185,
+        741.4088886705199
+      ],
+      "mean_mae": 892.3882920612647,
+      "std_mae": 139.1314662519632
+    },
+    "bootstrap_vs_baseline": {
+      "delta_rmspe_point": -0.00031990855117999817,
+      "delta_rmspe_95_ci": [
+        -0.0007290561534197083,
+        0.00013079899408124706
+      ],
+      "relative_improvement_point": 0.002045114065886697,
+      "relative_improvement_95_ci": [
+        -0.0008535668277376058,
+        0.004692446529898326
+      ],
+      "excludes_zero": false
+    },
+    "bootstrap_vs_baseline_3w": {
+      "delta_rmspe_point": 0.006735347889422483,
+      "delta_rmspe_95_ci": [
+        0.00586500416635658,
+        0.007872556208437161
+      ],
+      "relative_improvement_point": -0.03539960209674557,
+      "relative_improvement_95_ci": [
+        -0.03888963081598511,
+        -0.03240088925723386
+      ],
+      "excludes_zero": true
+    },
+    "slices": {
+      "overall": {
+        "rows": 40282,
+        "rmspe": 0.15610586569593804,
+        "mae": 741.4088886705199,
+        "bias": 0.013944758399762837
+      },
+      "low_sales": {
+        "threshold": 3846.1000000000004,
+        "rows": 4029,
+        "rmspe": 0.2862600068552588,
+        "mae": 534.5254833414912,
+        "bias": 0.16193610385478
+      },
+      "promo": {
+        "rows": 16701,
+        "rmspe": 0.13758486122670027,
+        "mae": 881.0553443590103,
+        "bias": 0.0023098144894993997
+      },
+      "no_promo": {
+        "rows": 23581,
+        "rmspe": 0.16799248114155096,
+        "mae": 642.5057269533122,
+        "bias": 0.02218508740384704
+      }
+    },
+    "feature_importance": null,
+    "bootstrap_vs_full_3w": {
+      "delta_rmspe_point": 0.04285466648303535,
+      "delta_rmspe_95_ci": [
+        0.03327149386673068,
+        0.056729716157310095
+      ],
+      "relative_improvement_point": -0.27801188822941464,
+      "relative_improvement_95_ci": [
+        -0.33296485110081936,
+        -0.2276535436851081
+      ],
+      "excludes_zero": true
+    },
+    "bootstrap_vs_full_w3": {
+      "delta_rmspe_point": 0.032868413513439165,
+      "delta_rmspe_95_ci": [
+        0.028764511484256242,
+        0.03716244845761464
+      ],
+      "relative_improvement_point": -0.26670799283293567,
+      "relative_improvement_95_ci": [
+        -0.30946792893893477,
+        -0.2265628308959501
+      ],
+      "excludes_zero": true
+    }
+  },
+  {
+    "id": "exp3_features_linear",
+    "name": "Linear (Ridge) + All Features",
+    "hypothesis": "Обогащение метаданными магазинов, конкуренцией, раздельными промо-медианами и календарем улучшит качество даже линейной модели.",
+    "model_type": "ridge",
+    "feature_count": 31,
+    "fit_time_seconds": 6.26,
+    "main_window": {
+      "start": "2015-06-20",
+      "end": "2015-07-31",
+      "rmspe": 0.16182275322900455,
+      "mae": 777.6028852546949,
+      "bias": 0.023280770443084103
+    },
+    "multi_window": {
+      "rmspe_scores": [
+        0.283149451773685,
+        0.17296626097351706,
+        0.16182275322900455
+      ],
+      "mean_rmspe": 0.20597948865873553,
+      "std_rmspe": 0.06706300654298909,
+      "mae_scores": [
+        1315.959553213974,
+        935.027709052243,
+        777.6028852546949
+      ],
+      "mean_mae": 1009.5300491736374,
+      "std_mae": 276.80304278805767
+    },
+    "bootstrap_vs_baseline": {
+      "delta_rmspe_point": 0.005396978981886513,
+      "delta_rmspe_95_ci": [
+        0.004405684964640848,
+        0.006418225853353158
+      ],
+      "relative_improvement_point": -0.034501852446390854,
+      "relative_improvement_95_ci": [
+        -0.041501338459608676,
+        -0.028188853179346048
+      ],
+      "excludes_zero": true
+    },
+    "bootstrap_vs_baseline_3w": {
+      "delta_rmspe_point": 0.02362102161643212,
+      "delta_rmspe_95_ci": [
+        0.021520384609784383,
+        0.025842145189526215
+      ],
+      "relative_improvement_point": -0.12414722744366218,
+      "relative_improvement_95_ci": [
+        -0.14628440071241894,
+        -0.10449085504523915
+      ],
+      "excludes_zero": true
+    },
+    "slices": {
+      "overall": {
+        "rows": 40282,
+        "rmspe": 0.16182275322900455,
+        "mae": 777.6028852546949,
+        "bias": 0.023280770443084107
+      },
+      "low_sales": {
+        "threshold": 3846.1000000000004,
+        "rows": 4029,
+        "rmspe": 0.2932260122107395,
+        "mae": 545.9458305232503,
+        "bias": 0.16106585222462527
+      },
+      "promo": {
+        "rows": 16701,
+        "rmspe": 0.1474182104534626,
+        "mae": 934.7680198508098,
+        "bias": 0.032278066432517516
+      },
+      "no_promo": {
+        "rows": 23581,
+        "rmspe": 0.17129343014590923,
+        "mae": 666.2922999152389,
+        "bias": 0.01690852837024889
+      }
+    },
+    "feature_importance": null,
+    "bootstrap_vs_full_3w": {
+      "delta_rmspe_point": 0.059740340210044984,
+      "delta_rmspe_95_ci": [
+        0.05082528321948545,
+        0.07317399660956653
+      ],
+      "relative_improvement_point": -0.3875546386958107,
+      "relative_improvement_95_ci": [
+        -0.42870822065901937,
+        -0.3478128872601019
+      ],
+      "excludes_zero": true
+    },
+    "bootstrap_vs_full_w3": {
+      "delta_rmspe_point": 0.03858530104650568,
+      "delta_rmspe_95_ci": [
+        0.03445019457679907,
+        0.043034756369788756
+      ],
+      "relative_improvement_point": -0.3130971986451472,
+      "relative_improvement_95_ci": [
+        -0.35764126433954596,
+        -0.27270569771324205
+      ],
+      "excludes_zero": true
+    }
+  },
+  {
+    "id": "exp4_catboost_full",
+    "name": "CatBoost + All Features (Proposed Best)",
+    "hypothesis": "Градиентный бустинг деревьев решений на полном наборе признаков выявит нелинейные взаимодействия (StoreType * Promo, расстояние до конкурентов, сезонность) и покажет максимальное снижение RMSPE.",
+    "model_type": "catboost",
+    "feature_count": 31,
+    "fit_time_seconds": 87.33,
+    "main_window": {
+      "start": "2015-06-20",
+      "end": "2015-07-31",
+      "rmspe": 0.12323745218249887,
+      "mae": 604.1039924561999,
+      "bias": 0.01990999677416932
+    },
+    "multi_window": {
+      "rmspe_scores": [
+        0.1912151469176721,
+        0.13887968584844312,
+        0.12323745218249887
+      ],
+      "mean_rmspe": 0.15111076164953804,
+      "std_rmspe": 0.03560113982467692,
+      "mae_scores": [
+        787.4738799743305,
+        806.7162125528489,
+        604.1039924561999
+      ],
+      "mean_mae": 732.7646949944598,
+      "std_mae": 111.83804864175039
+    },
+    "bootstrap_vs_baseline": {
+      "delta_rmspe_point": -0.03318832206461916,
+      "delta_rmspe_95_ci": [
+        -0.03749968569898192,
+        -0.029110162526826897
+      ],
+      "relative_improvement_point": 0.21216658331630806,
+      "relative_improvement_95_ci": [
+        0.1861844498110534,
+        0.2362231929973275
+      ],
+      "excludes_zero": true
+    },
+    "bootstrap_vs_baseline_3w": {
+      "delta_rmspe_point": -0.036119318593612865,
+      "delta_rmspe_95_ci": [
+        -0.04913135941558949,
+        -0.027006547258655127
+      ],
+      "relative_improvement_point": 0.18983570369504887,
+      "relative_improvement_95_ci": [
+        0.15632820324710034,
+        0.2236600080657417
+      ],
+      "excludes_zero": true
+    },
+    "slices": {
+      "overall": {
+        "rows": 40282,
+        "rmspe": 0.12323745218249887,
+        "mae": 604.1039924561999,
+        "bias": 0.019909996774169332
+      },
+      "low_sales": {
+        "threshold": 3846.1000000000004,
+        "rows": 4029,
+        "rmspe": 0.18699654577996702,
+        "mae": 364.78307392430276,
+        "bias": 0.08809388334095844
+      },
+      "promo": {
+        "rows": 16701,
+        "rmspe": 0.1262493747896892,
+        "mae": 737.5200741417194,
+        "bias": 0.04326227476253574
+      },
+      "no_promo": {
+        "rows": 23581,
+        "rmspe": 0.1210589671315255,
+        "mae": 509.61342885712173,
+        "bias": 0.0033709867795250277
+      }
+    },
+    "feature_importance": {
+      "Store": 0.6989399173708684,
+      "DayOfWeek": 4.209486387255891,
+      "Month": 2.793681013994476,
+      "StoreType": 0.5277061678002075,
+      "Assortment": 0.33264822300292524,
+      "StateHoliday": 0.3184538024235361,
+      "Promo": 5.269081261614625,
+      "store_median": 1.9116371035697104,
+      "weekday_median": 23.31836246274386,
+      "recent_mean": 0.07108070384033228,
+      "trend": 1.318684400497189,
+      "last_year": 9.32593713015135,
+      "promo_median": 7.020317583817886,
+      "sales_28_days_before_cutoff": 0.5602963328171773,
+      "recent_std": 0.17721982121534746,
+      "recent_weekday_median": 9.519025446232288,
+      "log_CompetitionDistance": 0.4117229639585008,
+      "has_competition": 0.0,
+      "is_competition_open": 0.09548803235383853,
+      "competition_age_months": 0.12754041536671368,
+      "Promo2": 0.021256037650453658,
+      "is_promo2_active": 0.0983498247988857,
+      "promo2_age_weeks": 0.19610990516849447,
+      "recent_mean_promo": 0.14104492953717204,
+      "recent_mean_no_promo": 0.06868893403356227,
+      "store_median_promo": 0.252682494113853,
+      "store_median_no_promo": 0.1974335970599219,
+      "promo_uplift": 0.5336428852841772,
+      "expected_promo_sales": 16.054330209142943,
+      "Day": 6.136523767433703,
+      "WeekOfYear": 6.654373282361503,
+      "IsMonthStart": 0.698071203856584,
+      "IsMonthEnd": 0.004529735049190176,
+      "IsMidMonth": 0.061233725418279435,
+      "SchoolHoliday": 0.8744202990644776
+    },
+    "bootstrap_vs_full_3w": {
+      "delta_rmspe_point": 0.0,
+      "delta_rmspe_95_ci": [
+        0.0,
+        0.0
+      ],
+      "relative_improvement_point": 0.0,
+      "relative_improvement_95_ci": [
+        0.0,
+        0.0
+      ],
+      "excludes_zero": false
+    },
+    "bootstrap_vs_full_w3": {
+      "delta_rmspe_point": 0.0,
+      "delta_rmspe_95_ci": [
+        0.0,
+        0.0
+      ],
+      "relative_improvement_point": 0.0,
+      "relative_improvement_95_ci": [
+        0.0,
+        0.0
+      ],
+      "excludes_zero": false
+    }
+  },
+  {
+    "id": "exp5_catboost_extended",
+    "name": "CatBoost Extended (41 признак)",
+    "hypothesis": "Добавление 10 дополнительных инженерных признаков (взаимодействие Promo и дня недели, комбинация StoreType и Assortment, дни до конца месяца, коэффициент вариации, флаг близкого конкурента, темп 4w/8w, циклические косинусы недели) для проверки гипотезы о насыщении признакового пространства.",
+    "model_type": "catboost",
+    "feature_count": 41,
+    "fit_time_seconds": 100.37,
+    "main_window": {
+      "start": "2015-06-20",
+      "end": "2015-07-31",
+      "rmspe": 0.12500201414146803,
+      "mae": 607.8350189963776,
+      "bias": 0.02632209119048771
+    },
+    "multi_window": {
+      "rmspe_scores": [
+        0.195030867438104,
+        0.13857156465023174,
+        0.12500201414146803
+      ],
+      "mean_rmspe": 0.15286814874326793,
+      "std_rmspe": 0.03713898640320414,
+      "mae_scores": [
+        802.429522920622,
+        800.996650529712,
+        607.8350189963776
+      ],
+      "mean_mae": 737.087064148904,
+      "std_mae": 111.93784732120402
+    },
+    "bootstrap_vs_baseline": {
+      "delta_rmspe_point": -0.03142376010565001,
+      "delta_rmspe_95_ci": [
+        -0.035809486125621466,
+        -0.027291026266919496
+      ],
+      "relative_improvement_point": 0.20088607684311308,
+      "relative_improvement_95_ci": [
+        0.17602110926763256,
+        0.2271248137045098
+      ],
+      "excludes_zero": true
+    },
+    "bootstrap_vs_baseline_3w": {
+      "delta_rmspe_point": -0.03410420127752983,
+      "delta_rmspe_95_ci": [
+        -0.04519474742276029,
+        -0.0261183096800973
+      ],
+      "relative_improvement_point": 0.1792446618752747,
+      "relative_improvement_95_ci": [
+        0.15132576390722363,
+        0.20411303894299201
+      ],
+      "excludes_zero": true
+    },
+    "slices": {
+      "overall": {
+        "rows": 40282,
+        "rmspe": 0.12500201414146803,
+        "mae": 607.8350189963776,
+        "bias": 0.026322091190487715
+      },
+      "low_sales": {
+        "threshold": 3846.1000000000004,
+        "rows": 4029,
+        "rmspe": 0.1899930458508189,
+        "mae": 372.09057602126603,
+        "bias": 0.09358872861434268
+      },
+      "promo": {
+        "rows": 16701,
+        "rmspe": 0.12929085808332383,
+        "mae": 757.5921632714034,
+        "bias": 0.04752511240174564
+      },
+      "no_promo": {
+        "rows": 23581,
+        "rmspe": 0.12187321872927045,
+        "mae": 501.77106638464755,
+        "bias": 0.011305270137554483
+      }
+    },
+    "feature_importance": {
+      "Store": 0.7887739768512976,
+      "DayOfWeek": 4.263403064867539,
+      "Month": 3.219952857176999,
+      "StoreType": 0.23072260103326386,
+      "Assortment": 0.2640599147923147,
+      "StateHoliday": 0.3563711959830552,
+      "store_type_assortment": 0.3063909010637828,
+      "Promo": 3.718505628737428,
+      "store_median": 0.04571256927321235,
+      "weekday_median": 20.966184293309105,
+      "recent_mean": 0.031949588408716624,
+      "trend": 1.2545941679847679,
+      "last_year": 9.787271264260564,
+      "promo_median": 7.534286310742946,
+      "sales_28_days_before_cutoff": 0.5698793123204352,
+      "recent_std": 0.038692959602156074,
+      "recent_weekday_median": 8.724661541511693,
+      "log_CompetitionDistance": 0.30759627758623054,
+      "has_competition": 0.0,
+      "is_competition_open": 0.07142715255244783,
+      "competition_age_months": 0.1360096383753797,
+      "Promo2": 0.02076849851120761,
+      "is_promo2_active": 0.09374447670127244,
+      "promo2_age_weeks": 0.11455194173043831,
+      "recent_mean_promo": 0.038004148295883215,
+      "recent_mean_no_promo": 0.09828180540534771,
+      "store_median_promo": 0.1054416916170187,
+      "store_median_no_promo": 0.4218131873450352,
+      "promo_uplift": 0.4630851135135277,
+      "expected_promo_sales": 18.645407776795164,
+      "Day": 6.482653040371072,
+      "WeekOfYear": 6.862141409438496,
+      "IsMonthStart": 0.49872651483717484,
+      "IsMonthEnd": 0.0232833480073574,
+      "IsMidMonth": 0.10428762981158178,
+      "SchoolHoliday": 0.9363012044188437,
+      "promo_weekday_median": 0.0,
+      "is_weekend": 0.0,
+      "days_to_month_end": 0.0,
+      "week_sin": 0.0,
+      "week_cos": 0.0,
+      "competition_near": 0.0,
+      "sales_variation_coef": 0.15867037688585978,
+      "last_year_ratio": 1.5877673661316396,
+      "sales_momentum_4w_8w": 0.7286252537496833
+    },
+    "bootstrap_vs_full_3w": {
+      "delta_rmspe_point": 0.0020151173160830316,
+      "delta_rmspe_95_ci": [
+        0.00044862244413799225,
+        0.004482312264311008
+      ],
+      "relative_improvement_point": -0.013072708669190268,
+      "relative_improvement_95_ci": [
+        -0.025946034731099514,
+        -0.003082785669594246
+      ],
+      "excludes_zero": true
+    },
+    "bootstrap_vs_full_w3": {
+      "delta_rmspe_point": 0.001764561958969152,
+      "delta_rmspe_95_ci": [
+        0.0009876334687232064,
+        0.0025898659840807685
+      ],
+      "relative_improvement_point": -0.014318390454519148,
+      "relative_improvement_95_ci": [
+        -0.021112098069535994,
+        -0.007856260811716614
+      ],
+      "excludes_zero": true
+    }
+  },
+  {
+    "id": "ablation1_no_store_meta",
+    "name": "CatBoost Ablation 1 (No Store Meta)",
+    "hypothesis": "Абляция 1: исключение метаданных магазинов (`store.csv`) изолированно показывает вклад информации о типе магазина, ассортименте и конкурентах.",
+    "model_type": "catboost",
+    "feature_count": 22,
+    "fit_time_seconds": 65.7,
+    "main_window": {
+      "start": "2015-06-20",
+      "end": "2015-07-31",
+      "rmspe": 0.12664397441907807,
+      "mae": 617.5324710150674,
+      "bias": 0.020614728233901272
+    },
+    "multi_window": {
+      "rmspe_scores": [
+        0.19663559811379863,
+        0.14521924241196432,
+        0.12664397441907807
+      ],
+      "mean_rmspe": 0.15616627164828034,
+      "std_rmspe": 0.03625720526573181,
+      "mae_scores": [
+        813.5161211905588,
+        844.4203087394847,
+        617.5324710150674
+      ],
+      "mean_mae": 758.4896336483703,
+      "std_mae": 123.04657035138506
+    },
+    "bootstrap_vs_baseline": {
+      "delta_rmspe_point": -0.029781799828039968,
+      "delta_rmspe_95_ci": [
+        -0.03400595662399666,
+        -0.02602114126357287
+      ],
+      "relative_improvement_point": 0.1903893394255561,
+      "relative_improvement_95_ci": [
+        0.16627512628483163,
+        0.2144560646652172
+      ],
+      "excludes_zero": true
+    },
+    "bootstrap_vs_baseline_3w": {
+      "delta_rmspe_point": -0.031085241519385826,
+      "delta_rmspe_95_ci": [
+        -0.043802235296674485,
+        -0.022166265240504055
+      ],
+      "relative_improvement_point": 0.16337763081185794,
+      "relative_improvement_95_ci": [
+        0.12787358104838623,
+        0.19954044285859213
+      ],
+      "excludes_zero": true
+    },
+    "slices": {
+      "overall": {
+        "rows": 40282,
+        "rmspe": 0.12664397441907807,
+        "mae": 617.5324710150674,
+        "bias": 0.020614728233901272
+      },
+      "low_sales": {
+        "threshold": 3846.1000000000004,
+        "rows": 4029,
+        "rmspe": 0.19303284343642013,
+        "mae": 380.0087770962187,
+        "bias": 0.09369763768794889
+      },
+      "promo": {
+        "rows": 16701,
+        "rmspe": 0.1295682922819919,
+        "mae": 755.2499399783505,
+        "bias": 0.04259402241799217
+      },
+      "no_promo": {
+        "rows": 23581,
+        "rmspe": 0.12453132308529308,
+        "mae": 519.9954942475091,
+        "bias": 0.005048119855609343
+      }
+    },
+    "feature_importance": {
+      "Store": 0.8848618367773385,
+      "DayOfWeek": 3.874102372199113,
+      "Month": 2.659166448001701,
+      "StateHoliday": 0.4147611874564509,
+      "Promo": 4.212812571345278,
+      "store_median": 0.2629542707272786,
+      "weekday_median": 21.743257973255446,
+      "recent_mean": 0.7495104145948462,
+      "trend": 1.4064634098224005,
+      "last_year": 10.084599996978865,
+      "promo_median": 7.742799534790283,
+      "sales_28_days_before_cutoff": 0.8524917850514235,
+      "recent_std": 0.17119709191375762,
+      "recent_weekday_median": 9.303521979881314,
+      "recent_mean_promo": 0.1688537453256722,
+      "recent_mean_no_promo": 0.07907040783661645,
+      "store_median_promo": 0.2916602308800693,
+      "store_median_no_promo": 0.5303064888465434,
+      "promo_uplift": 0.7776153848340146,
+      "expected_promo_sales": 18.89267431971064,
+      "Day": 6.570100644397373,
+      "WeekOfYear": 6.983601215683999,
+      "IsMonthStart": 0.3267406541812793,
+      "IsMonthEnd": 0.005464497184176549,
+      "IsMidMonth": 0.08023838095362226,
+      "SchoolHoliday": 0.9311731573704349
+    },
+    "bootstrap_vs_full_3w": {
+      "delta_rmspe_point": 0.005034077074227039,
+      "delta_rmspe_95_ci": [
+        0.004436459721327687,
+        0.00567067800963297
+      ],
+      "relative_improvement_point": -0.03265766339477388,
+      "relative_improvement_95_ci": [
+        -0.03716931353698944,
+        -0.028396214899786873
+      ],
+      "excludes_zero": true
+    },
+    "bootstrap_vs_full_w3": {
+      "delta_rmspe_point": 0.003406522236579196,
+      "delta_rmspe_95_ci": [
+        0.0025792108659996667,
+        0.004317333056260216
+      ],
+      "relative_improvement_point": -0.02764193981821835,
+      "relative_improvement_95_ci": [
+        -0.035372726307924096,
+        -0.02042760881519926
+      ],
+      "excludes_zero": true
+    }
+  },
+  {
+    "id": "ablation2_no_promo_split",
+    "name": "CatBoost Ablation 2 (No Promo Split)",
+    "hypothesis": "Абляция 2: исключение раздельных промо/не-промо медиан изолированно показывает вклад решения проблемы завышения прогноза в дни без акций.",
+    "model_type": "catboost",
+    "feature_count": 25,
+    "fit_time_seconds": 83.43,
+    "main_window": {
+      "start": "2015-06-20",
+      "end": "2015-07-31",
+      "rmspe": 0.12343530026003526,
+      "mae": 606.1729880491031,
+      "bias": 0.016434087874028076
+    },
+    "multi_window": {
+      "rmspe_scores": [
+        0.1794854008983348,
+        0.14445996300689276,
+        0.12343530026003526
+      ],
+      "mean_rmspe": 0.1491268880550876,
+      "std_rmspe": 0.02831498874174204,
+      "mae_scores": [
+        717.7830373961435,
+        838.4172947195206,
+        606.1729880491031
+      ],
+      "mean_mae": 720.791106721589,
+      "std_mae": 116.15137044394157
+    },
+    "bootstrap_vs_baseline": {
+      "delta_rmspe_point": -0.03299047398708278,
+      "delta_rmspe_95_ci": [
+        -0.03733861071685773,
+        -0.029055231980132493
+      ],
+      "relative_improvement_point": 0.21090177846884203,
+      "relative_improvement_95_ci": [
+        0.18672315577002474,
+        0.2352698189583749
+      ],
+      "excludes_zero": true
+    },
+    "bootstrap_vs_baseline_3w": {
+      "delta_rmspe_point": -0.03927941119805442,
+      "delta_rmspe_95_ci": [
+        -0.05306526525365791,
+        -0.029749399715403056
+      ],
+      "relative_improvement_point": 0.20644449994769373,
+      "relative_improvement_95_ci": [
+        0.1721876996309194,
+        0.24194020812270056
+      ],
+      "excludes_zero": true
+    },
+    "slices": {
+      "overall": {
+        "rows": 40282,
+        "rmspe": 0.12343530026003526,
+        "mae": 606.1729880491031,
+        "bias": 0.01643408787402808
+      },
+      "low_sales": {
+        "threshold": 3846.1000000000004,
+        "rows": 4029,
+        "rmspe": 0.1900430995321309,
+        "mae": 376.4644061348642,
+        "bias": 0.0888729773344165
+      },
+      "promo": {
+        "rows": 16701,
+        "rmspe": 0.123145857654971,
+        "mae": 727.3311172638299,
+        "bias": 0.03282120054929387
+      },
+      "no_promo": {
+        "rows": 23581,
+        "rmspe": 0.12363988511182575,
+        "mae": 520.363992840454,
+        "bias": 0.004828084363167048
+      }
+    },
+    "feature_importance": {
+      "Store": 0.8392220069430126,
+      "DayOfWeek": 4.942804098311653,
+      "Month": 2.839385367521966,
+      "StoreType": 0.2762391106078304,
+      "Assortment": 0.4725534204136328,
+      "StateHoliday": 0.24518275873223752,
+      "Promo": 4.256843009997924,
+      "store_median": 3.025417288489023,
+      "weekday_median": 21.30180838162625,
+      "recent_mean": 3.3332966578717773,
+      "trend": 0.8103235875291682,
+      "last_year": 7.322649654610501,
+      "promo_median": 20.50068918719567,
+      "sales_28_days_before_cutoff": 2.2431664164407423,
+      "recent_std": 0.5434495141767616,
+      "recent_weekday_median": 14.633762592744672,
+      "log_CompetitionDistance": 0.3057842823933665,
+      "has_competition": 0.0,
+      "is_competition_open": 0.08137235725567601,
+      "competition_age_months": 0.1378526828478783,
+      "Promo2": 0.0432095808280833,
+      "is_promo2_active": 0.09015965194703468,
+      "promo2_age_weeks": 0.18944827975986564,
+      "Day": 5.151885383246089,
+      "WeekOfYear": 5.031462212270794,
+      "IsMonthStart": 0.5432360731210863,
+      "IsMonthEnd": 0.021949197686339947,
+      "IsMidMonth": 0.04609424543698436,
+      "SchoolHoliday": 0.7707529999940524
+    },
+    "bootstrap_vs_full_3w": {
+      "delta_rmspe_point": -0.0031600926044415556,
+      "delta_rmspe_95_ci": [
+        -0.004194623229153844,
+        -0.002224389040156576
+      ],
+      "relative_improvement_point": 0.02050052850810051,
+      "relative_improvement_95_ci": [
+        0.015070386494295698,
+        0.02518289128721522
+      ],
+      "excludes_zero": true
+    },
+    "bootstrap_vs_full_w3": {
+      "delta_rmspe_point": 0.00019784807753638056,
+      "delta_rmspe_95_ci": [
+        -0.00043703461461920486,
+        0.0008424783833406157
+      ],
+      "relative_improvement_point": -0.0016054216801187427,
+      "relative_improvement_95_ci": [
+        -0.007008553985082787,
+        0.003496812369861937
+      ],
+      "excludes_zero": false
+    }
+  },
+  {
+    "id": "ablation3_no_calendar",
+    "name": "CatBoost Ablation 3 (No Calendar Features)",
+    "hypothesis": "Абляция 3: исключение календарных признаков (день месяца, неделя года, зарплатные пики) показывает вклад внутримесячной динамики.",
+    "model_type": "catboost",
+    "feature_count": 25,
+    "fit_time_seconds": 85.15,
+    "main_window": {
+      "start": "2015-06-20",
+      "end": "2015-07-31",
+      "rmspe": 0.1294429207060416,
+      "mae": 652.0196215894312,
+      "bias": 0.024758255089326737
+    },
+    "multi_window": {
+      "rmspe_scores": [
+        0.22238897407731753,
+        0.14935440267322406,
+        0.1294429207060416
+      ],
+      "mean_rmspe": 0.1670620991521944,
+      "std_rmspe": 0.04893785952887113,
+      "mae_scores": [
+        967.7439577844937,
+        885.0251427066654,
+        652.0196215894312
+      ],
+      "mean_mae": 834.9295740268634,
+      "std_mae": 163.71511419984344
+    },
+    "bootstrap_vs_baseline": {
+      "delta_rmspe_point": -0.026982853541076435,
+      "delta_rmspe_95_ci": [
+        -0.031212455540155264,
+        -0.02310851613925596
+      ],
+      "relative_improvement_point": 0.17249621215522648,
+      "relative_improvement_95_ci": [
+        0.14884072499648016,
+        0.19688485093511365
+      ],
+      "excludes_zero": true
+    },
+    "bootstrap_vs_baseline_3w": {
+      "delta_rmspe_point": -0.01809159275456737,
+      "delta_rmspe_95_ci": [
+        -0.034753139902022924,
+        -0.007409209036545059
+      ],
+      "relative_improvement_point": 0.0950856875283043,
+      "relative_improvement_95_ci": [
+        0.042487505660969586,
+        0.15656898749541107
+      ],
+      "excludes_zero": true
+    },
+    "slices": {
+      "overall": {
+        "rows": 40282,
+        "rmspe": 0.1294429207060416,
+        "mae": 652.0196215894313,
+        "bias": 0.024758255089326744
+      },
+      "low_sales": {
+        "threshold": 3846.1000000000004,
+        "rows": 4029,
+        "rmspe": 0.1939006337550563,
+        "mae": 394.6769485172763,
+        "bias": 0.10326499694531723
+      },
+      "promo": {
+        "rows": 16701,
+        "rmspe": 0.13506299314130685,
+        "mae": 838.37680528678,
+        "bias": 0.029113548504232208
+      },
+      "no_promo": {
+        "rows": 23581,
+        "rmspe": 0.1253101807668649,
+        "mae": 520.0340686048496,
+        "bias": 0.021673663455285087
+      }
+    },
+    "feature_importance": {
+      "Store": 0.9083616067573097,
+      "DayOfWeek": 5.209848851992721,
+      "Month": 7.310852211158226,
+      "StoreType": 0.4778788599380067,
+      "Assortment": 0.37536956255734605,
+      "StateHoliday": 0.4277476502845841,
+      "Promo": 7.438097373016329,
+      "store_median": 0.2725120700513321,
+      "weekday_median": 24.638327922740196,
+      "recent_mean": 0.09605815309497925,
+      "trend": 2.3244730857047347,
+      "last_year": 12.124788380960549,
+      "promo_median": 6.919555014142607,
+      "sales_28_days_before_cutoff": 0.5529629619181753,
+      "recent_std": 0.1972823451006522,
+      "recent_weekday_median": 8.43898291849746,
+      "log_CompetitionDistance": 0.510600953468683,
+      "has_competition": 0.0,
+      "is_competition_open": 0.11506801471207644,
+      "competition_age_months": 0.1910630844091577,
+      "Promo2": 0.015786631968395557,
+      "is_promo2_active": 0.03072654241543983,
+      "promo2_age_weeks": 0.23079698929679704,
+      "recent_mean_promo": 0.20199716953627675,
+      "recent_mean_no_promo": 0.29809439301922336,
+      "store_median_promo": 1.2498904200502072,
+      "store_median_no_promo": 0.3083589697245707,
+      "promo_uplift": 0.5540691852820362,
+      "expected_promo_sales": 18.58044867820189
+    },
+    "bootstrap_vs_full_3w": {
+      "delta_rmspe_point": 0.018027725839045494,
+      "delta_rmspe_95_ci": [
+        0.014469698189074712,
+        0.020336664375894455
+      ],
+      "relative_improvement_point": -0.11695160672827287,
+      "relative_improvement_95_ci": [
+        -0.13950646414403964,
+        -0.0844752962477571
+      ],
+      "excludes_zero": true
+    },
+    "bootstrap_vs_full_w3": {
+      "delta_rmspe_point": 0.006205468523542729,
+      "delta_rmspe_95_ci": [
+        0.005052153917839462,
+        0.007189787374934744
+      ],
+      "relative_improvement_point": -0.05035375540183373,
+      "relative_improvement_95_ci": [
+        -0.059779851018769606,
+        -0.039812712882946945
+      ],
+      "excludes_zero": true
+    }
+  }
+]

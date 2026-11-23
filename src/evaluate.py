@@ -1,25 +1,82 @@
+from typing import Dict, Any, List, Optional
 import numpy as np
 import pandas as pd
 
 
-def metrics(rows, prediction):
+def metrics(rows: pd.DataFrame, prediction: np.ndarray) -> Dict[str, Any]:
     scored = rows["Sales"] > 0
     if not scored.any():
         raise ValueError("RMSPE needs at least one row with positive sales.")
     actual = rows.loc[scored, "Sales"].to_numpy()
-    error = prediction[scored] - actual
+    pred = prediction[scored]
+    error = pred - actual
+    relative_error = error / actual
     return {
         "rows": int(len(actual)),
-        "rmspe": float(np.sqrt(np.mean((error / actual) ** 2))),
+        "rmspe": float(np.sqrt(np.mean(relative_error ** 2))),
         "mae": float(np.mean(np.abs(error))),
+        "bias": float(np.mean(relative_error)),
     }
 
 
-def relative_improvement(reference, candidate):
+def slice_metrics(rows: pd.DataFrame, prediction: np.ndarray) -> Dict[str, Any]:
+    scored = rows["Sales"] > 0
+    df = rows.loc[scored].copy()
+    pred = prediction[scored]
+    actual = df["Sales"].to_numpy()
+
+    q10 = np.quantile(actual, 0.10)
+    low_mask = actual <= q10
+    low_err = (pred[low_mask] - actual[low_mask]) / actual[low_mask]
+
+    promo_mask = df["Promo"].to_numpy() == 1
+    no_promo_mask = ~promo_mask
+
+    slices = {
+        "overall": metrics(rows, prediction),
+        "low_sales": {
+            "threshold": float(q10),
+            "rows": int(np.sum(low_mask)),
+            "rmspe": float(np.sqrt(np.mean(low_err ** 2))),
+            "mae": float(np.mean(np.abs(pred[low_mask] - actual[low_mask]))),
+            "bias": float(np.mean(low_err)),
+        },
+        "promo": {
+            "rows": int(np.sum(promo_mask)),
+            "rmspe": float(np.sqrt(np.mean(((pred[promo_mask] - actual[promo_mask]) / actual[promo_mask]) ** 2))),
+            "mae": float(np.mean(np.abs(pred[promo_mask] - actual[promo_mask]))),
+            "bias": float(np.mean((pred[promo_mask] - actual[promo_mask]) / actual[promo_mask])),
+        },
+        "no_promo": {
+            "rows": int(np.sum(no_promo_mask)),
+            "rmspe": float(np.sqrt(np.mean(((pred[no_promo_mask] - actual[no_promo_mask]) / actual[no_promo_mask]) ** 2))),
+            "mae": float(np.mean(np.abs(pred[no_promo_mask] - actual[no_promo_mask]))),
+            "bias": float(np.mean((pred[no_promo_mask] - actual[no_promo_mask]) / actual[no_promo_mask])),
+        },
+    }
+
+    if "StoreType" in df.columns:
+        store_types = {}
+        for st in sorted(df["StoreType"].unique()):
+            st_mask = df["StoreType"].to_numpy() == st
+            if st_mask.any():
+                st_act = actual[st_mask]
+                st_pred = pred[st_mask]
+                store_types[str(st)] = {
+                    "rows": int(np.sum(st_mask)),
+                    "rmspe": float(np.sqrt(np.mean(((st_pred - st_act) / st_act) ** 2))),
+                    "mae": float(np.mean(np.abs(st_pred - st_act))),
+                }
+        slices["store_type"] = store_types
+
+    return slices
+
+
+def relative_improvement(reference: float, candidate: float) -> Optional[float]:
     return (reference - candidate) / reference if reference else None
 
 
-def summarize_data(sales):
+def summarize_data(sales: pd.DataFrame) -> Dict[str, Any]:
     gap_start, gap_end = "2014-07-01", "2014-12-31"
     observed = sales.loc[sales["Date"].between(gap_start, gap_end), "Store"].unique()
     missing_stores = sales["Store"].nunique() - len(observed)
@@ -45,16 +102,13 @@ def summarize_data(sales):
     }
 
 
-def historical_spikes(past):
-    positive = past.loc[past["Sales"] > 0].copy()
-    weekday_median = positive.groupby(["Store", "DayOfWeek"])["Sales"].transform("median")
-    positive["spike"] = positive["Sales"] >= 3 * weekday_median
-    spike_rate = positive.groupby("Store")["spike"].mean()
-    stores = spike_rate.index[(spike_rate > 0) & (spike_rate <= 0.01)]
-    return positive.loc[positive["spike"] & positive["Store"].isin(stores)]
-
-
-def bootstrap_rmspe_by_store(rows, reference, candidate, samples, seed):
+def bootstrap_rmspe_by_store(
+    rows: pd.DataFrame,
+    reference: np.ndarray,
+    candidate: np.ndarray,
+    samples: int,
+    seed: int,
+) -> np.ndarray:
     scored = rows["Sales"] > 0
     actual = rows.loc[scored, "Sales"].to_numpy()
     errors = pd.DataFrame({
@@ -71,6 +125,15 @@ def bootstrap_rmspe_by_store(rows, reference, candidate, samples, seed):
         reference_error, candidate_error, count = groups[drawn].sum(axis=0)
         rmspe_samples[index] = np.sqrt([reference_error / count, candidate_error / count])
     return rmspe_samples
+
+
+def historical_spikes(past: pd.DataFrame) -> pd.DataFrame:
+    positive = past.loc[past["Sales"] > 0].copy()
+    weekday_median = positive.groupby(["Store", "DayOfWeek"])["Sales"].transform("median")
+    positive["spike"] = positive["Sales"] >= 3 * weekday_median
+    spike_rate = positive.groupby("Store")["spike"].mean()
+    stores = spike_rate.index[(spike_rate > 0) & (spike_rate <= 0.01)]
+    return positive.loc[positive["spike"] & positive["Store"].isin(stores)]
 
 
 def bootstrap_by_store(rows, reference, candidate, samples, seed):
@@ -103,3 +166,31 @@ def compare_rmspe_by_store(rows, predictions, comparisons, samples, seed):
             "excludes_zero": bool(high < 0 or low > 0),
         }
     return {"samples": samples, "family_size": family_size, "comparisons": results}
+
+
+def bootstrap_delta_rmspe(
+    rows: pd.DataFrame,
+    reference: np.ndarray,
+    candidate: np.ndarray,
+    samples: int = 1000,
+    seed: int = 42,
+) -> Dict[str, Any]:
+    rmspe_samples = bootstrap_rmspe_by_store(rows, reference, candidate, samples, seed)
+    ref_samples = rmspe_samples[:, 0]
+    cand_samples = rmspe_samples[:, 1]
+    differences = cand_samples - ref_samples  # negative means candidate is better (lower RMSPE)
+    low, high = np.quantile(differences, [0.025, 0.975])
+
+    valid_rel = (ref_samples - cand_samples) / ref_samples
+    rel_low, rel_high = np.quantile(valid_rel, [0.025, 0.975])
+
+    ref_point = metrics(rows, reference)["rmspe"]
+    cand_point = metrics(rows, candidate)["rmspe"]
+
+    return {
+        "delta_rmspe_point": float(cand_point - ref_point),
+        "delta_rmspe_95_ci": [float(low), float(high)],
+        "relative_improvement_point": float((ref_point - cand_point) / ref_point),
+        "relative_improvement_95_ci": [float(rel_low), float(rel_high)],
+        "excludes_zero": bool(high < 0 or low > 0),
+    }

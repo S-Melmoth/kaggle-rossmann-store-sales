@@ -1,9 +1,13 @@
 # Local Kaggle data and generated experiment artifacts
 /data/
-/artifacts/
 /rossmann-store-sales.zip
+/artifacts/*
+!/artifacts/plots/
+!/artifacts/experiments_summary.json
+!/artifacts/experiments_table.md
 
 # Python environments and caches
+catboost_info/
 /.venv/
 /venv/
 __pycache__/
